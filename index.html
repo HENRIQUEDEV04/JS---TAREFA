@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - TAREFA</title>
+</head>
+
+<body>
+
+    <h1 style="text-align: center;">JS - TAREFA</h1>
+
+    <div style="margin: 0 auto; max-width: 200px;">
+        <button style="width: 100%; margin-bottom: 10px;" onclick="exibirOperacoes()">Exibir Operações</button>
+        <div id="resultado"></div>
+
+        <button style="width: 100%; margin-bottom: 10px;" onclick="exibirLoop()">Exibir Loop</button>
+        <div id="loopResultado"></div>
+
+        <button style="width: 100%; margin-bottom: 10px;" onclick="exibirTabuadaFixa()">Exibir Tabuada Fixa</button>
+        <div id="tabuadaFixa"></div>
+
+        <input type="number" id="numero" placeholder="Digite um número" style="width: 100%; margin-bottom: 10px;">
+        <button style="width: 100%; margin-bottom: 10px;" onclick="calcularTabuada()">Calcular Tabuada</button>
+        <div id="tabuada"></div>
+
+        <input type="number" id="valor1" placeholder="Digite o primeiro valor"
+            style="width: 100%; margin-bottom: 10px;">
+        <select id="operacao" style="width: 100%; margin-bottom: 10px;">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="valor2" placeholder="Digite o segundo valor" style="width: 100%; margin-bottom: 10px;">
+        <button style="width: 100%; margin-bottom: 10px;" onclick="calcularOperacao()">Calcular</button>
+        <div id="resultadoOperacao"></div>
+
+        <input type="number" id="custoFabrica" placeholder="Custo de fábrica" style="width: 100%; margin-bottom: 10px;">
+        <input type="number" id="percDistribuidor" placeholder="% Distribuidor"
+            style="width: 100%; margin-bottom: 10px;">
+        <input type="number" id="percImpostos" placeholder="% Impostos" style="width: 100%; margin-bottom: 10px;">
+        <input type="text" id="valorfinal" placeholder="Valor Final" style="width: 100%; margin-bottom: 10px;" disabled>
+        <button style="width: 100%; margin-bottom: 10px;" onclick="calcularCusto()">Calcular Custo Final</button>
+    </div>
+
+    <script>
+        function exibirOperacoes() {
+            var num1 = 10, num2 = 100;
+            var resultado = "Soma: " + (num1 + num2) + "<br>" +
+                "Subtração: " + (num2 - num1) + "<br>" +
+                "Divisão: " + (num2 / num1) + "<br>" +
+                "Multiplicação: " + (num1 * num2);
+
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+
+        function exibirLoop() {
+            var loopResultado = "";
+            for (var i = 10; i <= 100; i++) {
+                loopResultado += i + " ";
+            }
+            document.getElementById("loopResultado").innerHTML = loopResultado;
+        }
+
+        function exibirTabuadaFixa() {
+            var numeroFixo = 5;
+            var tabuadaFixa = "";
+            for (var k = 1; k <= 10; k++) {
+                tabuadaFixa += numeroFixo + " x " + k + " = " + (numeroFixo * k) + "<br>";
+            }
+            document.getElementById("tabuadaFixa").innerHTML = tabuadaFixa;
+        }
+
+        function calcularTabuada() {
+            var numero = parseInt(document.getElementById("numero").value);
+            var tabuada = "";
+            for (var k = 1; k <= 10; k++) {
+                tabuada += numero + " x " + k + " = " + (numero * k) + "<br>";
+            }
+            document.getElementById("tabuada").innerHTML = tabuada;
+        }
+
+        function calcularOperacao() {
+            var valor1 = parseFloat(document.getElementById("valor1").value);
+            var valor2 = parseFloat(document.getElementById("valor2").value);
+            var operacao = document.getElementById("operacao").value;
+            var resultado;
+            switch (operacao) {
+                case "+":
+                    resultado = valor1 + valor2;
+                    break;
+                case "-":
+                    resultado = valor1 - valor2;
+                    break;
+                case "*":
+                    resultado = valor1 * valor2;
+                    break;
+                case "/":
+                    if (valor2 !== 0) {
+                        resultado = valor1 / valor2;
+                    } else {
+                        resultado = "Divisão por zero!";
+                    }
+                    break;
+                default:
+                    resultado = "Operação inválida!";
+            }
+            document.getElementById("resultadoOperacao").innerHTML = "Resultado: " + resultado;
+        }
+
+        function calcularCusto() {
+            var custoFabrica = parseFloat(document.getElementById("custoFabrica").value);
+            var percDistribuidor = parseFloat(document.getElementById("percDistribuidor").value);
+            var percImpostos = parseFloat(document.getElementById("percImpostos").value);
+            var valorFinal = custoFabrica + (custoFabrica * percDistribuidor / 100) + (custoFabrica * percImpostos / 100);
+            document.getElementById("valorfinal").value = valorFinal.toFixed(2);
+        }
+    </script>
+
+</body>
+
+</html>
